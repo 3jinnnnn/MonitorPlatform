@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.net.yto.o2iMonitor.quartz.mapper.JobConfigMapper">
+    <resultMap type="cn.net.yto.o2iMonitor.quartz.ScheduleJob" id="BasedResultMap">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="group" property="group" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="VARCHAR" />
+        <result column="cron" property="cron" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="bean_class" property="beanClass" jdbcType="VARCHAR" />
+        <result column="is_concurrent" property="isConcurrent" jdbcType="VARCHAR" />
+        <result column="spring_id" property="springId" jdbcType="VARCHAR" />
+        <result column="method_name" property="methodName" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="BasedColumnList">
+        id, `name`, `group`, `status`, cron, description, bean_class, is_concurrent, spring_id, method_name, create_time, update_time 
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BasedResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="BasedColumnList" />
+        from t_o2i_monitor_job
+        where id = #{id, jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from t_o2i_monitor_job
+        where id = #{id, jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="cn.net.yto.o2iMonitor.quartz.ScheduleJob">
+        insert into t_o2i_monitor_job (
+        <include refid="BasedColumnList" />
+        ) values (
+        #(id,jdbcType=BIGINT),#(name,jdbcType=VARCHAR),#(group,jdbcType=VARCHAR),#(status,jdbcType=VARCHAR),
+        #(cron,jdbcType=VARCHAR),#(description,jdbcType=VARCHAR),#(beanClass,jdbcType=VARCHAR),
+        #(isConcurrent,jdbcType=VARCHAR),#(springId,jdbcType=VARCHAR),#(methodName,jdbcType=VARCHAR),
+        #(createTime,jdbcType=TIMESTAMP),#(updateTime,jdbcType=TIMESTAMP)
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="cn.net.yto.o2iMonitor.quartz.ScheduleJob">
+        insert into t_o2i_monitor_job
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="group != null">
+                group,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="cron != null">
+                cron,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="beanClass != null">
+                bean_class,
+            </if>
+            <if test="isConcurrent != null">
+                is_concurrent,
+            </if>
+            <if test="springId != null">
+                spring_id,
+            </if>
+            <if test="methodName != null">
+                method_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="group != null">
+                #{group,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="cron != null">
+                #{cron,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="beanClass != null">
+                #{beanClass,jdbcType=VARCHAR},
+            </if>
+            <if test="isConcurrent != null">
+                #{isConcurrent,jdbcType=VARCHAR},
+            </if>
+            <if test="springId != null">
+                #{springId,jdbcType=VARCHAR},
+            </if>
+            <if test="methodName != null">
+                #{methodName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.net.yto.o2iMonitor.quartz.ScheduleJob">
+        update t_o2i_monitor_job
+        <set>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="group != null">
+                group = #{group,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="cron != null">
+                cron = #{cron,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="beanClass != null">
+                bean_class = #{beanClass,jdbcType=VARCHAR},
+            </if>
+            <if test="isConcurrent != null">
+                is_concurrent = #{isConcurrent,jdbcType=VARCHAR},
+            </if>
+            <if test="springId != null">
+                spring_id = #{springId,jdbcType=VARCHAR},
+            </if>
+            <if test="methodName != null">
+                method_name = #{methodName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.net.yto.o2iMonitor.quartz.ScheduleJob">
+        update t_o2i_monitor_job
+        set create_time =
+        #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        name = #{name,jdbcType=VARCHAR},
+        group = #{group,jdbcType=VARCHAR},
+        status = #{status,jdbcType=VARCHAR},
+        cron = #{cron,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        bean_class = #{beanClass,jdbcType=VARCHAR},
+        is_concurrent =
+        #{isConcurrent,jdbcType=VARCHAR},
+        spring_id = #{springId,jdbcType=VARCHAR},
+        method_name =
+        #{methodName,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="getAll" resultMap="BasedResultMap">
+        select
+        <include refid="BasedColumnList" />
+        from t_o2i_monitor_job
+    </select>
+</mapper>
