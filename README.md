@@ -1,0 +1,2 @@
+# MonitorPlatform
+基于SpringBoot/MyBatis/Thymeleaf/Quartz构建的用于监控应用健康状态的Web应用
